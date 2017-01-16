@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Exercícios livro CasaDoCódigo MEAN Stack</title>
+  </head>
+  <body>
+    <h1>Welllllcome to <%=nome %></h1>
+  </body>
+</html>

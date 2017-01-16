@@ -1,0 +1,93 @@
+
+.footer {
+  position: absolute;
+  height: 269px;
+  background: #000;
+  bottom: 0px;
+  width: 100%;
+
+  .copyright {
+    width: 100%;
+    bottom: 0px;
+    padding: 10px 0px;
+    background: #101010;
+  }
+  .title {
+    color: #244B66;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  p {
+    color: #ffffff;
+  }
+  #site-map {
+    padding-top: 30px;
+    .map-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 15px 0px;
+      padding: 2px 0px;
+      border-bottom: 2px solid $text-color;
+    }
+    .map {
+      margin-top: 15px;
+      ul {
+        padding: 0px;
+        list-style: none;
+        li {
+          a {
+            font-weight: bold;
+            color: #F8F8F8 !important;
+          }
+        }
+      }
+    }
+  }
+  #contacts {
+    padding-top: 30px;
+    .contact-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 15px 0px;
+      padding: 2px 0px;
+      border-bottom: 2px solid $text-color;
+    }
+    .contact {
+      margin-top: 15px;
+      ul {
+        padding: 0px;
+        list-style: none;
+        li:first-child {
+          font-size: 20px;
+        }
+        li {
+          font-weight: bold;
+          color: #F8F8F8 !important;
+
+        }
+      }
+    }
+  }
+
+  #social-media {
+    padding-top: 30px;
+    text-align: center;
+    .social-title {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 15px 0px;
+      padding: 2px 0px;
+      border-bottom: 2px solid $text-color;
+    }
+    .social-icons {
+      margin-top: 15px;
+      i {
+        margin-right: 20px;
+      }
+      i:last-child {
+        margin-right: 0px;
+      }
+    }
+  }
+
+}

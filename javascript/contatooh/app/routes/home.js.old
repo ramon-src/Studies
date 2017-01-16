@@ -1,0 +1,9 @@
+/*
+O módulo da rota só funcionará se estiver sendo chamado
+no arquivo da aplicação, neste caso express.js
+*/
+module.exports = function(app) {
+    var controller = app.controllers.home;
+    app.get('/', controller.index);
+    app.get('/index', controller.index);
+}

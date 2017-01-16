@@ -1,0 +1,24 @@
+{
+  "name": "contatooh",
+  "description": "MEAN ecosystem for learning",
+  "main": "index.js",
+  "authors": [
+    "Ramon Schmidt Rocha <ramonroc@gmail.com>"
+  ],
+  "license": "BSD-2-Clause",
+  "homepage": "https://github.com/ramon183/contatooh",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-route": "^1.5.8",
+    "angular-material": "^1.0.9",
+    "angular-resource": "^1.5.8"
+  }
+}

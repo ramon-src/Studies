@@ -1,0 +1,15 @@
+/*
+Este módulo retorna um objeto que terá métodos, alguns desses
+métodos poderão dar acesso às views, que até então não estão expostas
+ao mundo externo
+*/
+module.exports = function() {
+    var controller = {};
+    controller.index = function(req, res) {
+        /*
+        Primeiro parâmetro, nome da view e o segundo é o objeto
+        */
+        res.render('index', { nome: 'Express' });
+    };
+    return controller;
+}

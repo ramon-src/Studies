@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Video Player</title>
+    <link rel="stylesheet" href="css/default.css">
+    <link rel="stylesheet" href="css/playlist.css">
+    <link rel="stylesheet" href="css/videoplayer.css">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://use.fontawesome.com/c9bf100267.js"></script>
+</head>
+<body>
+<div id="wrapper">
+    <div id="videoplayer">
+        <div id="screen" class="ui-widget-header">
+        </div>
+        <ul id="controller">
+            <li id="back" class="button"><i class="fa fa-step-backward"></i></li>
+            <li id="play" class="button"><i class="fa fa-play"></i></li>
+            <li id="next" class="button"><i class="fa fa-step-forward"></i></li>
+        </ul>
+    </div>
+    <div id="playlist">
+        <div id="queue">
+            <div class="video  ui-state-default ui-widget-content">
+                <span class="caption">Vídeo nº 1
+                    <i class="swap-button fa fa-exchange"></i>
+                </span>
+            </div>
+            <div class="video  ui-state-default ui-widget-content">
+                <span class="caption">Vídeo nº 2
+                    <i class="swap-button fa fa-exchange"></i>
+                </span>
+            </div>
+            <div class="video  ui-state-default ui-widget-content">
+                <span class="caption">Vídeo nº 3
+                    <i class="swap-button fa fa-exchange"></i>
+                </span>
+            </div>
+            <div class="video  ui-state-default ui-widget-content">
+                <span class="caption">Vídeo nº 4
+                    <i class="swap-button fa fa-exchange"></i>
+                </span>
+            </div>
+            <div class="video  ui-state-default ui-widget-content">
+                <span class="caption">Vídeo nº 5
+                    <i class="swap-button fa fa-exchange"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        var $queue = $("#queue");
+        var $screen = $("#screen");
+
+        /**
+         * Swap button when mouse hover on video
+         */
+        $(".video").hover(function () {
+            var $video = $(this);
+            $video.find('.swap-button').show(500);
+        }, function () {
+            var $video = $(this);
+            $video.find('.swap-button').hide(200);
+        });
+
+        /**
+         * When a swap button was clicked on video in queue
+         * The click check if the screen has video, if it has
+         * get the parent video of the button and swap the elements
+         */
+        $(".swap-button").click(function () {
+            var $swapBtn = $(this);
+            if (hasVideo()) {
+                addVideoToQueue(getActiveVideo());
+                addVideoToScreen($swapBtn.parents(".video"));
+            }
+        });
+
+        /**
+         * Drag and drop the videos in queue
+         * When the queue receive an element from the screen
+         * We remove the class Active and Styles
+         */
+        $queue.sortable({
+            revert: true,
+            receive: function (event, ui) {
+                cleanVideoElement($(ui.item));
+            }
+        });
+
+        /**
+         * Disable to select Videos on Queue
+         */
+        $("#queue, #video").disableSelection();
+
+        /**
+         * Video Screen Droppable
+         */
+        $screen.droppable({
+            accept: ".video",
+            hoverClass: "ui-state-highlight",
+            drop: function (event, ui) {
+                var videoDragged = $(ui.draggable).draggable();
+                var activeVideo = getActiveVideo();
+
+                if (videoDragged.hasClass('active')) {
+                    $('.active').draggable({
+                        revert: true
+                    });
+                } else {
+                    if (hasVideo()) {
+                        addVideoToQueue(activeVideo);
+                        addVideoToScreen(videoDragged);
+                        videoDragged.find(".swap-button").disable();
+                    } else {
+                        addVideoToScreen($(ui.draggable).draggable());
+                    }
+                }
+            }
+        });
+
+        /**
+         * Helper functions to Droppable Area (Screen)
+         */
+        function addVideoToScreen($videoDragged) {
+            cleanVideoElement($videoDragged);
+            $screen.append($videoDragged.addClass('active'));
+        }
+
+        function addVideoToQueue($videoDragged) {
+            cleanVideoElement($videoDragged);
+            $queue.append($videoDragged);
+        }
+
+        function cleanVideoElement($video) {
+            jQuery.effects.restoreStyle($video);
+            $video.removeClass('active');
+        }
+
+        function getActiveVideo() {
+            if (hasVideo($screen)) {
+                return $screen.find('.active');
+            }
+        }
+
+        function hasVideo() {
+            return ($screen.has('.active').length) ? true : false;
+        }
+
+
+        /**
+         * Enable Drag&Drop video, and if it isn't dropped to the screen he needs to back
+         */
+        $(".video").draggable({
+            revert: "invalid",
+            cancel: ".swap-button",
+            connectToSortable: "#queue",
+            cursor: "move",
+            opacity: 0.50,
+            stack: ".video",
+            scroll: false,
+        });
+    });
+</script>
+</body>
+</html>

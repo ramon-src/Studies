@@ -1,0 +1,9 @@
+a, button, span {
+  i {
+    margin: 0px 10px 0px 0px;
+  }
+}
+
+a + a, a + button, a + span {
+  margin-right: 10px;
+}

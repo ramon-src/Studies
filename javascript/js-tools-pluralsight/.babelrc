@@ -1,0 +1,5 @@
+{
+  "presets":[
+    "latest" // Set the latest JS
+  ]
+}

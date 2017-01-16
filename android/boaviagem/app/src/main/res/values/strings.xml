@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">boaviagem</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login_btn">Log in</string>
+    <string name="error_auth">Usuário ou senha inválidos</string>
+
+    <string name="new_spent">Novo gasto</string>
+    <string name="new_travel">Nova viagem</string>
+    <string name="my_travels">Minhas viagens</string>
+    <string name="settings">Configurações</string>
+</resources>

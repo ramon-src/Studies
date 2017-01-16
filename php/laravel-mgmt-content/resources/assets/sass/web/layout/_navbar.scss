@@ -1,0 +1,74 @@
+#navbar-web {
+  @media screen and (min-width: $break-small+1) {
+    height: 120px;
+  }
+
+  .container {
+    position: relative;
+
+    .navbar-header {
+      position: relative;
+      overflow-y: hidden;
+      left: -5px;
+      @media screen and (min-width: $break-small+1) {
+        height: 115px !important;
+        width: 200px !important;
+      }
+
+      a {
+        .navbar-brand-img {
+          @media screen and (max-width: $break-small) {
+            position: absolute;
+            top: 0px;
+            height: 60px;
+            width: 60px;
+          }
+          @media screen and (min-width: $break-small+1) {
+            position: absolute;
+            height: 100%;
+            top: 10px;
+            left: 0px;
+          }
+        }
+      }
+    }
+
+    #app-navbar-collapse {
+      @media screen and (min-width: $break-small+1) {
+        height: 100% !important;
+      }
+      .container-search-bar {
+        @media screen and (min-width: $break-small+1) {
+          position: absolute;
+          top: 0px;
+          right: 0px;
+          width: 250px;
+          margin: 0px 30px;
+        }
+
+        #search-bar {
+          background-color: lightgrey;
+          width: 100% !important;
+        }
+      }
+      .menus {
+        @media screen and (min-width: $break-small+1) {
+          position: absolute;
+          bottom: 0px;
+          right: 0px;
+        }
+        margin: 15px 15px;
+
+        li {
+          a {
+            text-transform: uppercase;
+            padding: 15px;
+            i {
+
+            }
+          }
+        }
+      }
+    }
+  }
+}

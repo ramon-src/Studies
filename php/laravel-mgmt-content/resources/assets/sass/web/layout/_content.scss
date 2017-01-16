@@ -1,0 +1,44 @@
+body{
+  background-color: white;
+}
+#web {
+  height: auto;
+  min-height: 100%;
+  background: #FFFFFF;
+  .header-background {
+    background-color: lightgrey;
+    width: 100%;
+    height: 130px;
+    @media screen and (max-width: $break-small) {
+      width: 100%;
+      height: 100px;
+    }
+    margin-top: -23px;
+    .container {
+      .page-title {
+        margin-top: 45px;
+        @media screen and (max-width: $break-small) {
+          margin-top: 30px;
+        }
+        i {
+          margin: 0px 30px 0px 0px;
+        }
+      }
+    }
+  }
+
+  > .container {
+    .description {
+      margin: 45px 0px 25px 0px;
+    }
+  }
+
+  .page-error {
+    font-size: 18px;
+    text-align: center;
+    .img-explains {
+      margin: -8% auto 0px auto;
+      width: 90%;
+    }
+  }
+}
