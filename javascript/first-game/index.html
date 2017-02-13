@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Processando o canvas na seção HEAD</title>
+
+        <style>
+            #meu_canvas {}
+        </style>
+    </head>
+
+    <body>
+        <canvas id="meu_canvas" width="400" height="300">
+            nao é compativel
+        </canvas>
+        <script>
+            var canvas = document.getElementById('meu_canvas');
+            var context = canvas.getContext('2d');
+            context.fillStyle = 'red';
+            context.fillRect(100, 100, 100, 100);
+
+            context.lineWidth = 3;
+            context.strokeStyle = 'blue';
+            context.strokeRect(50, 50, 100, 100);
+
+            context.beginPath();
+
+            context.moveTo(75, 250);
+            context.lineTo(150, 50);
+            context.lineTo(225, 250);
+            context.lineTo(50, 120);
+            context.lineTo(250, 120);
+            context.lineTo(75, 250);
+
+            context.lineWidth = 2;
+            context.strokeStyle = 'yellow';
+
+            context.fill();
+            context.stroke();
+
+            context.beginPath();
+            context.fillStyle = 'green';
+            context.arc(50, 50, 40, converteGrausParaRadiano(90), converteGrausParaRadiano(270), false);
+            context.fill();
+
+            context.fillStyle = 'red';
+            context.arc(150, 50, 40, converteGrausParaRadiano(90), converteGrausParaRadiano(270), true);
+            context.fill();
+
+            context.beginPath();
+            context.arc(250, 50, 40, 0, converteGrausParaRadiano(2, false));
+            context.fill();
+            context.stroke();
+
+            var imagem = new Image();
+            imagem.src = 'nave.png';
+
+            imagem.onload = function() {
+                var x = 20;
+                for (var i = 1; i <= 5; i++) {
+                    context.drawImage(imagem, x, 20, 64, 32);
+                    x += 70;
+                }
+            }
+
+            var imagem = new Image();
+            imagem.src = 'explosao.gif';
+            imagem.onload = function() {
+                context.drawImage(imagem, 80, 10, 60, 65, 20, 20, 60, 65);
+            }
+
+            context.fillStyle = 'green';
+            context.fillRect(50, 50, 25, 25);
+
+            context.save();
+
+            context.fillStyle = 'purple';
+            context.fillRect(100, 50, 25, 25);
+
+            context.restore();
+
+            context.fillRect(150, 50, 25, 25);
+
+            //bola
+
+            var x = 20
+            var y = 100
+            var raio = 5
+
+            var anterior = new Date().getTime();
+
+            requestAnimationFrame(mexerBola);
+
+            function mexerBola() {
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                context.beginPath();
+                context.arc(x, y, raio, 0, converteGrausParaRadiano(2, false));
+                context.fill();
+
+                var agora = new Date().getTime();
+                var decorrido = agora - anterior;
+                anterior = agora;
+
+                var velocidade = 20;
+                x += velocidade * decorrido / 1000;
+                requestAnimationFrame(mexerBola);
+            }
+
+            function converteGrausParaRadiano(grau, semi = true) {
+                var radiano = grau * Math.PI;
+                if (semi === true) {
+                    radiano = radiano / 180;
+                }
+                return radiano;
+
+            }
+
+            var meuCarro2 = {
+                cor: azul,
+                velocidade: 0,
+                acelerar: function() {
+                    this.velocidade += 10;
+                }
+            }
+
+            var obj = {
+                nome: "henrique"
+            }
+
+        </script>
+    </body>
+
+</html>

@@ -1,0 +1,39 @@
+<html>
+<head>
+  <title>Primeiro Teste: Loop de Animação com Sprties</title>
+  <script src="animacao.js"></script>
+  <script src="bola.js"></script>
+</head>
+<body>
+  <canvas id="canvas_animacao" width="500" height="500"></canvas>
+  <script>
+  var b1 = new Bola(context);
+  b1.x = 100;
+  b1.y = 200;
+  b1.velocidadeX = 20;
+  b1.velocidadeY = -10;
+  b1.cor = 'blue';
+  b1.raio = 20;
+
+  var b2 = new Bola(context);
+  b2.x =  200;
+  b2.y = 100;
+  b2.velocidadeX = -10;
+  b2.velocidadeY = 20;
+  b2.cor = 'green';
+  b2.raio = 30;0
+
+  //criando loop de animaçao
+
+var animacao = new Animacao();
+animacao.novoSprite(b1);
+Animacao.novoSprite(b2);
+
+animacao.ligar();
+
+
+
+
+  </script>
+</body>
+</html>
