@@ -25,27 +25,8 @@
     <div id="playlist">
         <div id="queue">
             <div class="video  ui-state-default ui-widget-content">
-                <span class="caption">Vídeo nº 1
-                    <i class="swap-button fa fa-exchange"></i>
-                </span>
-            </div>
-            <div class="video  ui-state-default ui-widget-content">
-                <span class="caption">Vídeo nº 2
-                    <i class="swap-button fa fa-exchange"></i>
-                </span>
-            </div>
-            <div class="video  ui-state-default ui-widget-content">
-                <span class="caption">Vídeo nº 3
-                    <i class="swap-button fa fa-exchange"></i>
-                </span>
-            </div>
-            <div class="video  ui-state-default ui-widget-content">
-                <span class="caption">Vídeo nº 4
-                    <i class="swap-button fa fa-exchange"></i>
-                </span>
-            </div>
-            <div class="video  ui-state-default ui-widget-content">
-                <span class="caption">Vídeo nº 5
+                <span class="caption">
+                    <span class="title"></span>
                     <i class="swap-button fa fa-exchange"></i>
                 </span>
             </div>
@@ -54,13 +35,42 @@
 </div>
 <script>
     $(document).ready(function () {
+
+
+    });
+    $(window).load(function () {
         var $queue = $("#queue");
         var $screen = $("#screen");
+        $.ajax({
+            method: "GET",
+            url: "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PL3dIVMpwlNmpsfuRFO37xBALGHReOWYwq&key=AIzaSyDC2hJjgy7C97kGS-GfhMK2O1tLg7Wcjhk",
+            success: function (response) {
+                //var $queue = document.getElementById('queue');
+                response.items.forEach(function (item, index) {
+//                    var $clone = $('.video').clone();
+//                    $clone.find('.title').append(item.snippet.title);
+//                    $clone.appendTo($queue);
+                    var $_icon = document.createElement('i');
+                    $_icon.classList.add("swap-button", "fa", "fa-exchange");
+
+                    var $_caption = document.createElement('span');
+                    $_caption.classList.add("caption");
+                    $_caption.append(item.snippet.title);
+                    $($_caption).append($($_icon));
+
+                    var $_video = document.createElement('div');
+                    $_video.classList.add("video", "ui-state-default", "ui-widget-content");
+                    $($_video).append(($_caption));
+
+                    $queue.append($($_video));
+                });
+            }
+        });
 
         /**
          * Swap button when mouse hover on video
          */
-        $(".video").hover(function () {
+        $(".video").on('hover',function () {
             var $video = $(this);
             $video.find('.swap-button').show(500);
         }, function () {
@@ -73,7 +83,7 @@
          * The click check if the screen has video, if it has
          * get the parent video of the button and swap the elements
          */
-        $(".swap-button").click(function () {
+        $(".swap-button").on('click', function () {
             var $swapBtn = $(this);
             if (hasVideo()) {
                 addVideoToQueue(getActiveVideo());
